@@ -1,1 +1,9 @@
-DirectoryIndex index.php
+DirectoryIndex index.php index.html
+DirectoryIndexRedirect Off
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Redirect explicit browser requests only; leave internal index lookups alone.
+    RewriteCond %{THE_REQUEST} \s/+[^\s?]*/index\.html(?:[?\s]) [NC]
+    RewriteRule ^(privacy-policy|thank-you)/index\.html$ $1/ [R=301,L]
+</IfModule>

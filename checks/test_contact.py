@@ -139,7 +139,7 @@ class ContactTests(unittest.TestCase):
         fields = self.form()
         status, headers, _ = self.request('contact.php', fields)
         self.assertEqual(status, 303)
-        self.assertEqual(headers['Location'], 'thank-you/index.html')
+        self.assertEqual(headers['Location'], 'thank-you/')
         self.assertEqual(len(self.smtp.messages), 1)
         recipients, data = self.smtp.messages[0]
         self.assertEqual(recipients, ['RCPT TO:<contact@nimblyscout.com>'])
@@ -154,7 +154,7 @@ class ContactTests(unittest.TestCase):
         fields = self.form()
         fields.update(name='Zoë 李', message='')
         status, headers, _ = self.request('contact.php', fields)
-        self.assertEqual((status, headers['Location']), (303, 'thank-you/index.html'))
+        self.assertEqual((status, headers['Location']), (303, 'thank-you/'))
         message = email.message_from_bytes(self.smtp.messages[0][1])
         self.assertIn('Zoë 李', message.get_payload(decode=True).decode('utf-8'))
 
@@ -218,6 +218,14 @@ class ContactTests(unittest.TestCase):
         self.assertEqual(status, 405)
         self.assertEqual(headers['Allow'], 'POST')
         self.assertEqual(self.smtp.messages, [])
+
+    def test_clean_subpage_urls_serve_the_expected_pages(self):
+        for path, title in (('privacy-policy/', 'Privacy Policy | NimblyScout'),
+                            ('thank-you/', 'Thank You | NimblyScout')):
+            with self.subTest(path=path):
+                status, _, body = self.request(path)
+                self.assertEqual(status, 200)
+                self.assertIn(f'<title>{title}</title>', body)
 
 
 if __name__ == '__main__':

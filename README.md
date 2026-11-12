@@ -14,8 +14,14 @@ website files to your domain's document root:
 - `icon.svg`, `us-s-style.css`, `contact-workspace.webp`
 - `remote-job-search-tracker.csv`, `privacy-policy/`, and `thank-you/`
 
-Apache reads the included `DirectoryIndex index.php`. For Nginx or IIS,
-configure index.php as the default document through the host settings.
+Apache reads the included `DirectoryIndex index.php index.html`, serving
+the PHP landing page and HTML subpages at their directory URLs. All site
+links use `privacy-policy/`, and successful form submissions go to
+`thank-you/`. With Apache mod_rewrite enabled, old requests ending in
+`/privacy-policy/index.html` or `/thank-you/index.html` redirect permanently
+to the clean directory URL. Upload the included `.htaccess` file as well.
+For Nginx or IIS, configure both index.php and index.html as default
+documents and equivalent redirects through the host settings.
 There is no landing index.html. GitHub stores the source; GitHub Pages
 cannot run this PHP form.
 

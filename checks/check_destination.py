@@ -61,7 +61,10 @@ for path, document in pages.items():
         if url.scheme:
             assert url.scheme == "https" or (url.scheme == "mailto" and url.path.endswith("@nimblyscout.com")), link
             continue
+        assert not url.path.endswith("index.html"), (path, "Use a clean directory URL", link)
         target = (path.parent / url.path).resolve() if url.path else path
+        if target.is_dir():
+            target = next((target / name for name in ("index.php", "index.html") if (target / name).is_file()), target)
         assert target.is_relative_to(ROOT) and target.is_file(), (path, link)
         if url.fragment:
             assert target in pages and url.fragment in pages[target].ids, (path, link)

@@ -83,5 +83,5 @@ if (!$sent) {
 
 unset($_SESSION['form_errors'], $_SESSION['form_values']);
 $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-header('Location: thank-you/index.html', true, 303);
+header('Location: thank-you/', true, 303);
 exit;
