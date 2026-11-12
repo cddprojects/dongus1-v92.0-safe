@@ -49,7 +49,7 @@ assert "We publish educational guides" in source
 assert "https://consumer.ftc.gov/articles/job-scams" in page.links
 
 pages = {home_path: page}
-for relative_path in ("privacy/index.html", "thank-you/index.html"):
+for relative_path in ("privacy-policy/index.html", "thank-you/index.html"):
     path = ROOT / relative_path
     document = SitePage()
     document.feed(path.read_text(encoding="utf-8-sig"))

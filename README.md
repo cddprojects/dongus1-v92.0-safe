@@ -12,7 +12,7 @@ website files to your domain's document root:
 
 - `index.php`, `contact.php`, `form-session.php`, and `.htaccess`
 - `icon.svg`, `us-s-style.css`, `contact-workspace.webp`
-- `remote-job-search-tracker.csv`, `privacy/`, and `thank-you/`
+- `remote-job-search-tracker.csv`, `privacy-policy/`, and `thank-you/`
 
 Apache reads the included `DirectoryIndex index.php`. For Nginx or IIS,
 configure index.php as the default document through the host settings.

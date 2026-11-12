@@ -180,7 +180,7 @@ unset($_SESSION['form_errors'], $_SESSION['form_values']);
       <div class="footer-bottom">
         <p>© 2026 NimblyScout. All rights reserved.</p>
         <div class="footer-links">
-          <a class="plain-link" href="privacy/index.html">Privacy policy</a>
+          <a class="plain-link" href="privacy-policy/index.html">Privacy policy</a>
           <a class="plain-link" href="#main">Back to top <span aria-hidden="true">↑</span></a>
         </div>
       </div>
